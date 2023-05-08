@@ -1,0 +1,50 @@
+Due to bad connection and having and old system, I couldn't work with both Tableau cloud and Tableau desktop, but i know the steps to do it.
+
+Here are the steps to connect to the MySQL database in Tableau:
+
+1-Open Tableau Desktop and click on the "Connect to Data" button on the start page.
+
+2-In the "To a Server" section, select "MySQL" from the list of data sources.
+
+3-Enter the server name, port number, database name, username, and password in the fields provided.
+
+4-Click on the "Sign In" button to connect to the database.
+
+5-If the connection is successful, you should see a list of tables in the database.
+
+6-Select the table or tables you want to work with and drag them onto the canvas.
+
+7-Once you have the data on the canvas, you can create a visualization by dragging fields onto the rows and columns shelves, and adding filters, marks, and other elements as needed.
+
+
+Here are the steps to generate data reports using Tableau:
+
+1. Connect to the data source by following the steps in my previous response.
+
+2. Drag the desired fields to the Rows and Columns shelves to build a chart or graph.
+
+3. Customize the chart or graph by adding or removing fields, changing the chart type, adjusting the axis, and adding filters or groups as needed.
+
+4. To create a report, drag the chart or graph to the "New Worksheet" button at the bottom of the screen.
+
+5. On the new worksheet, you can add additional charts or graphs, tables, text boxes, and other elements to create a complete report.
+
+6. Customize the layout by resizing and moving elements, and adjusting the colors and fonts to match your branding.
+
+7. Add filters to the report to allow users to interact with the data and explore it in more detail.
+
+8. Once the report is complete, you can share it with others by publishing it to Tableau Server or Tableau Online, or by exporting it as a PDF, image, or other file format.
+
+Some tips for creating effective data reports in Tableau:
+
+- Keep the report simple and easy to read. Avoid cluttering the report with too many charts, tables, or text boxes.
+
+- Use colors and fonts consistently to maintain a professional appearance.
+
+- Provide context for the data by adding labels, legends, and other descriptive elements.
+
+- Use filters and groups to allow users to explore the data in more detail.
+
+- Use tooltips to provide additional information when users hover over a data point.
+
+- Test the report thoroughly to ensure that the data is accurate and the report is easy to use.
