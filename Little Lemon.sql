@@ -34,3 +34,51 @@ CREATE TABLE Order_Items (
   FOREIGN KEY (order_id) REFERENCES Orders(order_id),
   FOREIGN KEY (product_id) REFERENCES Products(product_id)
 );
+CREATE PROCEDURE `GetMaxQuantity` (IN `orderId` INT, IN `productId` INT, OUT `maxQuantity` INT)
+BEGIN
+    SELECT MAX(quantity) INTO maxQuantity 
+    FROM inventory 
+    WHERE product_id = productId 
+    AND quantity > 0
+    AND product_id IN (SELECT product_id FROM order_product WHERE order_id = orderId)
+END;
+CREATE PROCEDURE `ManageBooking` (IN `customerId` INT, IN `bookingId` INT, IN `addBooking` BOOLEAN)
+BEGIN
+    DECLARE quantity INT;
+    DECLARE product_id INT;
+
+    SELECT quantity, product_id FROM booking WHERE id = bookingId AND customer_id = customerId INTO quantity, product_id;
+
+    IF addBooking = TRUE THEN
+        IF quantity IS NULL THEN
+            SET quantity = 1;
+            INSERT INTO booking (customer_id, product_id, quantity) VALUES (customerId, product_id, quantity);
+        ELSE
+            SET quantity = quantity + 1;
+            UPDATE booking SET quantity = quantity WHERE id = bookingId AND customer_id = customerId;
+        END IF;
+    ELSE
+        IF quantity IS NOT NULL THEN
+            IF quantity = 1 THEN
+                DELETE FROM booking WHERE id = bookingId AND customer_id = customerId;
+            ELSE
+                SET quantity = quantity - 1;
+                UPDATE booking SET quantity = quantity WHERE id = bookingId AND customer_id = customerId;
+            END IF;
+        END IF;
+    END IF;
+END;
+CREATE PROCEDURE `UpdateBooking` (IN `bookingId` INT, IN `newQuantity` INT)
+BEGIN
+    IF newQuantity > 0 THEN
+        UPDATE booking SET quantity = newQuantity WHERE id = bookingId
+    END IF;
+END;
+CREATE PROCEDURE `AddBooking` (IN `customerId` INT, IN `productId` INT)
+BEGIN
+    INSERT INTO booking (customer_id, product_id, quantity) VALUES (customerId, productId, 1)
+END;
+CREATE PROCEDURE `CancelBooking` (IN `bookingId` INT)
+BEGIN
+    DELETE FROM booking WHERE id = bookingId
+END;
